@@ -1,0 +1,53 @@
+﻿@model MVCHome.Models.Usuario
+@{
+    ViewData["Title"] = "Eliminar Usuario";
+    Layout = "_LayoutDashboard";
+}
+
+@*<h1><a></a>@ViewData["Title"]</h1>*@
+<div class="container-fluid">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h1 class="text-white">
+                    <strong>Eliminar usuario</strong>
+                </h1>
+            </div>
+            <distributed-cache class="card-body">
+                <form asp-action="EliminarUsuario" method="post">
+                    @*OBTENEMOS EL ID DEL USUARIO PERO SE LO OCULTAMOS AL USUARIO*@
+                    <input type="hidden" asp-for="PkUser" />
+                    <div class="form-group">
+                        @*<label type="hidden" asp-for="Nombre">Nombre</label>*@
+                        <input type="hidden" asp-for="Nombre" class="form-control" placeholder="Ingrese el nombre a eliminar" required />
+                    </div>
+
+                    <div class="form-group">
+                        @*<label type="hidden" asp-for="User">Usuario</label>*@
+                        <input type="hidden" asp-for="User" class="form-control" placeholder="Ingrese el nombre de usuario a eliminar" required />
+                    </div>
+
+                    <div class="h1 text-center">
+                        <strong>¿Desea eliminar el usuario?</strong>
+                    </div>
+
+                    <div class="container-fluid d-flex justify-content-center">
+                        <div class="row m-5">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-danger">
+                                    <i class="fa-solid fa-plus"></i> Si
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Index">
+                                    <i class="fa-solid fa-arrow-rotate-left"></i> No
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
