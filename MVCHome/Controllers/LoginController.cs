@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVCHome.Context;
 using System;
 using System.Linq;
@@ -42,15 +43,21 @@ namespace MVCHome.Controllers
         {
             try
             {
-                var response = _context.Usuario.Where(u => u.User == user && u.Password == password).ToList();
-                if (response.Count > 0)
+                var response = _context.Usuario.Include(x=>x.Rol).
+                    FirstOrDefault(u => u.User == user && u.Password == password);
+                if (response != null)
                 {
-                    return Json(new { Success = true });
+                    if (response.Rol.Nombre == "administrador")
+                    {
+                        return Json(new { Success = true, admin = true });
+                    }
+                    else
+                    {
+                        return Json(new { Success = true, admin = false });
+                    }
                 }
-                else
-                {
-                    return Json(new { Success = false });
-                }
+                return Json(new { Success = false, admin = false });
+                
             }
             catch (Exception e)
             {

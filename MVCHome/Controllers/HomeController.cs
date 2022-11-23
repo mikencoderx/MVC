@@ -27,8 +27,15 @@ namespace MVCHome.Controllers
         //{
         //    return View();
         //}
-
+        [HttpGet]
         public async Task<IActionResult> Index()
+        {
+            var response = await _context.Usuario.Include(z => z.Rol).ToListAsync();
+            return View(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> IndexCopia()
         {
             var response = await _context.Usuario.Include(z => z.Rol).ToListAsync();
             return View(response);
@@ -49,7 +56,7 @@ namespace MVCHome.Controllers
                 usuario.Nombre = request.Nombre;
                 usuario.User = request.User;
                 usuario.Password = request.Password;
-                usuario.FkRol = 1;
+                usuario.FkRol = 2;
 
                 _context.Usuario.Add(usuario);
                 await _context.SaveChangesAsync();

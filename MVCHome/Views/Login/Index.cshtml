@@ -61,10 +61,16 @@
                 success: function(response){
                     console.log(response)
                     if(response.success == true){
-                        window.location.href = "/Home/Index";
+                        if(response.admin == true){
+                             window.location.href = "/Home/Index";
+                        }else{
+                            window.location.href = "/Home/IndexCopia";
+                        }
+                        
+                        
                     }
-                    else
-                    window.location.href = "@Url.Action("Index", "Login")";
+                    //else{
+                    //window.location.href = "@Url.Action("Index", "Login")
                 },
                 error: function(){
                     console.log('Login Fail!!!');
