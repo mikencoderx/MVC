@@ -20,7 +20,7 @@ namespace MVCHome.Controllers
             _context = context;
         }
 
-        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-FSE1RT4; Initial Catalog=MVC-24BM; Integrated Security=True;");
+        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-KVO21IJ; Initial Catalog=MVC-24BM; Integrated Security=True;");
 
         [HttpGet]
         public async Task<IActionResult> Index()

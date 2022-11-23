@@ -1,0 +1,38 @@
+﻿Create procedure MostrarArticulos
+As
+Begin
+Select * from Articulo
+End
+
+Create procedure InsertarArticulo
+@Nombre varchar(Max),
+@Descripcion varchar(Max),
+@UrlImg varchar(Max)
+As
+Begin
+Insert into Articulo Values (@Nombre,@Descripcion,@UrlImg)
+End
+
+Create procedure ModificarArticulo
+@Nombre varchar(30),
+@Descripcion varchar(Max),
+@UrlImg varchar(Max),
+@PkArticulo int
+As
+Begin
+
+Update Articulo set
+nombre = @Nombre,
+Descripcion = @Descrpcion,
+UrlImg = @UrlImg where
+PkArticulo = PkdArticulo
+End
+
+Create procedure EliminarArticulo
+@PkArticulo int
+As
+Begin
+Delete from Articulo where PkArticulo = @PkArticulo
+End
+
+insert into rol values ("administrador")
